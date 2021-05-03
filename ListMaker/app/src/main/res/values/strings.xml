@@ -13,4 +13,6 @@
     <string name="name_of_list">Adicione sua Lista:</string>
     <string name="task_to_add">Qual tarefa você quer adicionar?</string>
     <string name="add_task">Adicionar</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
