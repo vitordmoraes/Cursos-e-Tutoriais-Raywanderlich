@@ -2,119 +2,147 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/firstLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:id="@+id/firstLayout"
     tools:context="com.raywenderlich.android.octomembers.ui.member.MemberActivity">
 
-  <LinearLayout
-      android:id="@+id/avatarContainer"
-      android:layout_width="match_parent"
-      android:layout_height="@dimen/detail_avatar_container_size"
+
+  <View
+      android:layout_width="0dp"
+      android:layout_height="0dp"
       android:background="@color/colorAccent"
-      android:gravity="center_vertical"
+      app:layout_constraintBottom_toTopOf="@id/HorizontalGuideline"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toTopOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/avatarContainer">
+      app:layout_constraintTop_toTopOf="parent"/>
 
-
-    <ImageView
-        android:id="@+id/memberAvatar"
-        android:layout_width="@dimen/detail_avatar_size"
-        android:layout_height="@dimen/detail_avatar_size"
-        android:contentDescription="@string/contentDescription_teamMemberAvatar"
-        android:padding="@dimen/padding_standard"
-        tools:src="@drawable/ic_launcher_background" />
-
-
-    <TextView
-        android:id="@+id/memberName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:gravity="center"
-        android:maxLines="3"
-        android:padding="@dimen/padding_standard"
-        android:text="Firstname Lastname"
-        android:textColor="@android:color/white"
-        android:textSize="@dimen/member_name_on_screen" />
-
-  </LinearLayout>
-
-  <LinearLayout
-      android:id="@+id/memberInfoContainer"
+  <View
       android:layout_width="0dp"
       android:layout_height="0dp"
       android:background="@color/colorPrimary"
-      android:gravity="center"
-      android:orientation="vertical"
-      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintTop_toBottomOf="@id/HorizontalGuideline"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/avatarContainer">
+      app:layout_constraintBottom_toBottomOf="parent"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></LinearLayout>
+  <ImageView
+      android:id="@+id/memberAvatar"
+      android:layout_width="@dimen/detail_avatar_size"
+      android:layout_height="@dimen/detail_avatar_size"
+      android:contentDescription="@string/contentDescription_teamMemberAvatar"
+      android:padding="@dimen/padding_double"
+      tools:src="@drawable/ic_launcher_background"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="@id/VerticalGuidline"
+      app:layout_constraintBottom_toTopOf="@id/HorizontalGuideline"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/memberLoginContainer">
 
-      <TextView
+
+  <TextView
+      android:id="@+id/memberName"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:gravity="center"
+      android:maxLines="3"
+      android:padding="@dimen/padding_standard"
+      android:text="Firstname Lastname"
+      android:textColor="@android:color/white"
+      android:textSize="@dimen/member_name_on_screen"
+      app:layout_constraintTop_toTopOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="@id/VerticalGuidline"
+      app:layout_constraintBottom_toTopOf="@id/HorizontalGuideline"/>
+
+  <TextView
+          android:id="@+id/labelLogin"
           style="@style/member_label"
-          android:text="@string/label_login" />
+          android:text="@string/label_login"
+          app:layout_constraintEnd_toStartOf="@+id/InfoVerticalGuideline"
+          app:layout_constraintTop_toBottomOf="@+id/HorizontalGuideline"
+          app:layout_constraintBottom_toTopOf="@+id/labelCompany"
+          app:layout_constraintVertical_chainStyle="packed"/>
+
+
+  <TextView
+      android:id="@+id/labelCompany"
+      style="@style/member_label"
+      android:text="@string/label_company"
+      app:layout_constraintEnd_toStartOf="@+id/InfoVerticalGuideline"
+      app:layout_constraintTop_toBottomOf="@+id/labelLogin"
+      app:layout_constraintBottom_toTopOf="@+id/labelEmail" />
+
+  <TextView
+        android:id="@+id/labelEmail"
+        style="@style/member_label"
+        android:text="@string/label_email"
+        app:layout_constraintEnd_toStartOf="@+id/InfoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/labelCompany"
+        app:layout_constraintBottom_toTopOf="@+id/labelType"/>
+
+    <TextView
+        android:id="@+id/labelType"
+        style="@style/member_label"
+        android:text="@string/label_type"
+        app:layout_constraintEnd_toStartOf="@+id/InfoVerticalGuideline"
+        app:layout_constraintTop_toBottomOf="@+id/labelEmail"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
       <TextView
           android:id="@+id/memberLogin"
-          style="@style/member_info" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/memberCompanyContainer">
-
-      <TextView
-          style="@style/member_label"
-          android:text="@string/label_company" />
+          style="@style/member_info"
+          app:layout_constraintBottom_toTopOf="@+id/memberCompany"
+          app:layout_constraintStart_toStartOf="@id/VerticalGuidline"
+          app:layout_constraintTop_toBottomOf="@id/HorizontalGuideline"
+          app:layout_constraintVertical_chainStyle="packed"
+          tools:visibility="visible"/>
 
       <TextView
           android:id="@+id/memberCompany"
-          style="@style/member_info" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/memberEmailContainer">
-
-      <TextView
-          style="@style/member_label"
-          android:text="@string/label_email" />
+          style="@style/member_info"
+          app:layout_constraintBottom_toTopOf="@+id/memberEmail"
+          app:layout_constraintStart_toStartOf="@id/VerticalGuidline"
+          app:layout_constraintTop_toBottomOf="@id/memberLogin"
+          tools:visibility="visible"/>
 
       <TextView
           android:id="@+id/memberEmail"
-          style="@style/member_info" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/memberTypeContainer">
-
-      <TextView
-          style="@style/member_label"
-          android:text="@string/label_type" />
+          style="@style/member_info"
+          app:layout_constraintBottom_toTopOf="@+id/memberType"
+          app:layout_constraintStart_toStartOf="@id/VerticalGuidline"
+          app:layout_constraintTop_toBottomOf="@id/memberCompany"
+          tools:visibility="visible"/>
 
       <TextView
           android:id="@+id/memberType"
-          style="@style/member_info" />
+          style="@style/member_info"
+          app:layout_constraintStart_toStartOf="@id/VerticalGuidline"
+          app:layout_constraintTop_toBottomOf="@id/memberEmail"
+          app:layout_constraintBottom_toBottomOf="parent"
+          tools:visibility="visible"/>
 
-    </LinearLayout>
-  </LinearLayout>
+
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/VerticalGuidline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.5" />
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/InfoVerticalGuideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      app:layout_constraintGuide_percent="0.4" />
+
+  <androidx.constraintlayout.widget.Guideline
+      android:id="@+id/HorizontalGuideline"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
+      app:layout_constraintGuide_percent="0.5" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -86,19 +86,22 @@ class MemberActivity : AppCompatActivity(), MemberContract.View {
     }
   }
 
-  private fun showStringInFieldOrGone(string: String?, textView: TextView, container: ViewGroup){
+  private fun showStringInFieldOrGone(string: String?, textView: TextView, labelTextView: TextView){
     if (string != null && string.isNotEmpty()) {
       textView.text = string
+      textView.visibility = View.VISIBLE
+      labelTextView.visibility = View.VISIBLE
     } else {
-      container.visibility = View.GONE
+      textView.visibility = View.GONE
+      labelTextView.visibility = View.GONE
     }
   }
 
   private fun showMemberInfo(member: Member) {
-    showStringInFieldOrGone(member.login, memberLogin, memberLoginContainer)
-    showStringInFieldOrGone(member.company, memberCompany, memberCompanyContainer)
-    showStringInFieldOrGone(member.email, memberEmail, memberCompanyContainer)
-    showStringInFieldOrGone(member.type, memberType, memberTypeContainer)
+    showStringInFieldOrGone(member.login, memberLogin, labelLogin)
+    showStringInFieldOrGone(member.company, memberCompany, labelCompany)
+    showStringInFieldOrGone(member.email, memberEmail, labelEmail)
+    showStringInFieldOrGone(member.type, memberType, labelType)
   }
 
   private fun memberLoginFromIntent() = intent.getStringExtra(EXTRA_MEMBER_LOGIN)
