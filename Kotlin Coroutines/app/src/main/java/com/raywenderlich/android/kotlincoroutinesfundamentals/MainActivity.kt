@@ -37,8 +37,12 @@ package com.raywenderlich.android.kotlincoroutinesfundamentals
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Handler
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.net.HttpURLConnection
 import java.net.URL
 
@@ -55,23 +59,28 @@ class MainActivity : AppCompatActivity() {
     setContentView(R.layout.activity_main)
 
 
-    val mainLooper = mainLooper // or Looper.getMainLooper()
+
     // Your code
 
-        Thread(Runnable {
-      val imageUrl = URL("https://wallpaperplay.com/walls/full/1/c/7/38027.jpg")
+        Log.d("TaskThread", Thread.currentThread().name)
+        GlobalScope.launch(context = Dispatchers.IO) {
+          Log.d("TaskThread", Thread.currentThread().name)
+          val imageUrl = URL("https://wallpaperplay.com/walls/full/1/c/7/38027.jpg")
 
-      val connection = imageUrl.openConnection() as HttpURLConnection
-      connection.doInput = true
-      connection.connect()
+          val connection = imageUrl.openConnection() as HttpURLConnection
+          connection.doInput = true
+          connection.connect()
 
-      val inputStream = connection.inputStream
-         val bitmap = BitmapFactory.decodeStream(inputStream)
+          val inputStream = connection.inputStream
+          val bitmap = BitmapFactory.decodeStream(inputStream)
 
-      Handler(mainLooper).post { image.setImageBitmap(bitmap)}
-
-    }).start()
-
+           launch(Dispatchers.Main) {
+             Log.d("TaskThread", Thread.currentThread().name)
+             image.setImageBitmap(bitmap)
+           }
+        }
+  }
+}
 // ------------- First Method to Thread (background processing)
 //    Thread(Runnable {
 //      val imageUrl = URL("https://wallpaperplay.com/walls/full/1/c/7/38027.jpg")
@@ -87,5 +96,4 @@ class MainActivity : AppCompatActivity() {
 //
 //    }).start()
 //
-  }
-}
+
