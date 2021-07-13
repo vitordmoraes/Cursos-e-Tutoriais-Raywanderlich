@@ -1,2 +1,2 @@
 # Tutoriais
- Apps desenvolvidos através de cursos e aulas
+Praticas desenvolvidas através de cursos da raywanderlich.com e educative.io.
